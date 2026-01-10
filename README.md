@@ -9,7 +9,7 @@ Installation:
 Copy and paste this command in your terminal
 
 ```bash
-curl -sSL [https://raw.githubusercontent.com/amirhamzah0/Simple-Systemd-DNS-Changer/main/install.sh](https://raw.githubusercontent.com/amirhamzah0/Simple-Systemd-DNS-Changer/main/install.sh) | sudo bash 
+curl -sSL https://raw.githubusercontent.com/amirhamzah0/Simple-Systemd-DNS-Changer/main/install.sh | sudo bash 
 ```
 
 Then type 'dns' and choose your preferred dns server
