@@ -6,14 +6,11 @@ No fuss, very simple and straightforward process of changing dns servers
 Tested on Fedora linux 
 
 Installation:
-Copy ahd paste this command in your terminal
+Copy and paste this command in your terminal
 
-<pre>
-
-Bash
-
-curl -sSL https://raw.githubusercontent.com/amirhamzah0/Simple-Systemd-DNS-Changer/main/install.sh | sudo bash
-</pre>
+```bash
+curl -sSL [https://raw.githubusercontent.com/amirhamzah0/Simple-Systemd-DNS-Changer/main/install.sh](https://raw.githubusercontent.com/amirhamzah0/Simple-Systemd-DNS-Changer/main/install.sh) | sudo bash 
+```
 
 Then type 'dns' and choose your preferred dns server
 
