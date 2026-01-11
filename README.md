@@ -7,7 +7,7 @@ A lightweight, high-performance DNS switcher for Linux (Fedora, CachyOS, Arch) u
 Run this command to automatically configure `systemd-resolved` and install the `dns` utility:
 
 ```bash
-curl -sSL [https://raw.githubusercontent.com/amirhamzah0/Simple-Systemd-DNS-Changer/main/install.sh](https://raw.githubusercontent.com/amirhamzah0/Simple-Systemd-DNS-Changer/main/install.sh) | sudo bash
+curl -sSL https://raw.githubusercontent.com/amirhamzah0/Simple-Systemd-DNS-Changer/main/install.sh | sudo bash
 ```
 <br><br>
 🛠 Usage<br>
