@@ -1,6 +1,5 @@
 #!/bin/bash
 
-# Configuration - Hardcoded for your repo
 GH_USER="amirhamzah0"
 GH_REPO="Simple-Systemd-DNS-Changer"
 BRANCH="main"
@@ -11,36 +10,35 @@ echo "   AUTOMATED DNS SETUP: CACHYOS   "
 echo "=================================="
 
 # 1. System Services Setup
-echo "Configuring systemd-resolved..."
 sudo systemctl enable --now systemd-resolved
-
-# Link the resolv.conf to the systemd-resolved stub
 sudo ln -sf /run/systemd/resolve/stub-resolv.conf /etc/resolv.conf
 
-# Ensure NetworkManager uses systemd-resolved
+# NetworkManager link
 sudo mkdir -p /etc/NetworkManager/conf.d/
 echo -e "[main]\ndns=systemd-resolved" | sudo tee /etc/NetworkManager/conf.d/dns.conf > /dev/null
 sudo systemctl restart NetworkManager
 
-# 2. Directory & Files
+# 2. Files Download
 sudo mkdir -p $DIR
-
-# Files to download (using the names in your repo)
 FILES=("mullvad.conf" "controld.conf" "cloudflare.conf")
 
 for FILE in "${FILES[@]}"; do
-    echo "Downloading $FILE as backup..."
-    # Download as .bak so they are disabled by default
+    echo "Downloading $FILE..."
     sudo wget -q "https://raw.githubusercontent.com/$GH_USER/$GH_REPO/$BRANCH/$FILE" -O "$DIR/$FILE.bak"
 done
 
-# 3. The Management Script
-echo "Downloading dns controller..."
-# Download the script to /usr/local/bin so it's available everywhere without an alias
+# 3. Fix Script Permissions and Path
+echo "Installing dns controller to /usr/local/bin..."
 sudo wget -q "https://raw.githubusercontent.com/$GH_USER/$GH_REPO/$BRANCH/dns.sh" -O /usr/local/bin/dns
 sudo chmod +x /usr/local/bin/dns
 
+# 4. Alias Cleanup (Removes the old dead alias)
+sed -i '/alias dns=/d' ~/.bashrc
+# Adding a clean alias that points to the new location
+echo "alias dns='/usr/local/bin/dns'" >> ~/.bashrc
+
 echo "----------------------------------"
 echo " INSTALLATION COMPLETE"
-echo " Just type 'dns' to start."
+echo " Please run: source ~/.bashrc"
+echo " Then type 'dns' to start."
 echo "----------------------------------"
